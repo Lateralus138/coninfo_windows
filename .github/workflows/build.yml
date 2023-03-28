@@ -1,0 +1,142 @@
+name: Build Con Info Windows
+on:
+  push:
+    paths:
+      - '**.cpp'
+      - '**.h'
+      - '**.o'
+      - '**.sln'
+      - '**.yml'
+      - '*.yml'
+      - '**.ps1'
+env:
+  VS_PROGRAM: 1
+  VS_FILE: 0
+  VS_EPOCH:
+  VS_FULL:
+  RELEASE_TITLE: "Con Info"
+  RELEASE_FILE: "./docs/md/release.md"
+  BIN_DEFAULT: "coninfo"
+  PRERELEASE: False
+jobs:
+  build_windows:
+    name: Build Windows Project
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: microsoft/setup-msbuild@v1.3.1
+    - id: make_coninfo
+      run: |
+        cd scripts
+        ./buildwindows.ps1
+        if ($LASTEXITCODE -gt 0)
+        {
+          Write-Host "[$LASTEXITCODE] - Error in build script."
+          Exit $LASTEXITCODE
+        }
+        cd ../
+        $epoch = [decimal] [datetimeoffset]::UtcNow.ToUnixTimeMilliseconds()
+        Write-Host "Test"
+        echo "VS_FULL=${{ env.VS_PROGRAM }}.${{ env.VS_FILE }}.$epoch" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+        $coninfo_x86_md5_text = @'
+        {
+          "schemaVersion": 1,
+          "color": "2E9778",
+          "label": "coninfo-x86.exe MD5",
+          "message": "PLACEHOLDER",
+          "labelColor": "1d1d1d",
+          "style": "for-the-badge",
+          "namedLogo": "windows"
+        }
+        '@
+        New-Item -ItemType Directory -Force -Path '.\docs\json'
+        Write-Output "$coninfo_x86_md5_text" > .\docs\json\coninfo_x86_md5.json
+        $file = ".\docs\json\coninfo_x86_md5.json"
+        $md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
+        $(Get-FileHash -Path "build\windows\x86\coninfo-x86.exe" -Algorithm MD5).Hash
+        $hash = $(Get-FileHash -Path "build\windows\x86\coninfo-x86.exe" -Algorithm MD5).Hash
+        ((Get-Content -path $file -Raw) -replace 'PLACEHOLDER',$hash) | Set-Content -Path "$file"
+        $coninfo_x64_md5_text = @'
+        {
+          "schemaVersion": 1,
+          "color": "2E9778",
+          "label": "coninfo-x64.exe MD5",
+          "message": "PLACEHOLDER",
+          "labelColor": "1d1d1d",
+          "style": "for-the-badge",
+          "namedLogo": "windows"
+        }
+        '@
+        Write-Output "$coninfo_x64_md5_text" > .\docs\json\coninfo_x64_md5.json
+        $file = ".\docs\json\coninfo_x64_md5.json"
+        $md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
+        $hash = $(Get-FileHash -Path "build\windows\x64\coninfo-x64.exe" -Algorithm MD5).Hash
+        ((Get-Content -path $file -Raw) -replace 'PLACEHOLDER',$hash) | Set-Content -Path "$file"
+        Copy-Item -Path .\build\windows\x86\coninfo-x86.exe -Destination .\scripts\setup\coninfo\x86_\coninfo.exe -Force
+        Copy-Item -Path .\build\windows\x64\coninfo-x64.exe -Destination .\scripts\setup\coninfo\x64_\coninfo.exe -Force
+        cd scripts\setup
+        ISCC.exe coninfo\x86_\coninfo_x86.iss
+        if ($LASTEXITCODE -gt 0)
+        {
+          Write-Host "[$LASTEXITCODE] - Error while building x86 setup."
+          Exit 250
+        }
+        cd ..\..\
+        $coninfo_x86_installer_md5_text = @'
+        {
+          "schemaVersion": 1,
+          "color": "2E9778",
+          "label": "coninfo_x86_installer.exe MD5",
+          "message": "PLACEHOLDER",
+          "labelColor": "1d1d1d",
+          "style": "for-the-badge",
+          "namedLogo": "windows"
+        }
+        '@
+        Write-Output "$coninfo_x86_installer_md5_text" > .\docs\json\coninfo_x86_installer_md5.json
+        $file = ".\docs\json\coninfo_x86_installer_md5.json"
+        $md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
+        $(Get-FileHash -Path "scripts\setup\coninfo\x86_\Output\coninfo_x86_installer.exe" -Algorithm MD5).Hash
+        $hash = $(Get-FileHash -Path "scripts\setup\coninfo\x86_\Output\coninfo_x86_installer.exe" -Algorithm MD5).Hash
+        ((Get-Content -path $file -Raw) -replace 'PLACEHOLDER',$hash) | Set-Content -Path "$file"
+        cd scripts\setup
+        ISCC.exe coninfo\x64_\coninfo_x64.iss
+        if ($LASTEXITCODE -gt 0)
+        {
+          Write-Host "[$LASTEXITCODE] - Error while building x64 setup."
+          Exit 249
+        }
+        cd ..\..\
+        $coninfo_x64_installer_md5_text = @'
+        {
+          "schemaVersion": 1,
+          "color": "2E9778",
+          "label": "coninfo_x64_installer.exe MD5",
+          "message": "PLACEHOLDER",
+          "labelColor": "1d1d1d",
+          "style": "for-the-badge",
+          "namedLogo": "windows"
+        }
+        '@
+        Write-Output "$coninfo_x64_installer_md5_text" > .\docs\json\coninfo_x64_installer_md5.json
+        $file = ".\docs\json\coninfo_x64_installer_md5.json"
+        $md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
+        $(Get-FileHash -Path "scripts\setup\coninfo\x64_\Output\coninfo_x64_installer.exe" -Algorithm MD5).Hash
+        $hash = $(Get-FileHash -Path "scripts\setup\coninfo\x64_\Output\coninfo_x64_installer.exe" -Algorithm MD5).Hash
+        ((Get-Content -path $file -Raw) -replace 'PLACEHOLDER',$hash) | Set-Content -Path "$file"
+        git pull
+        git add .\docs\json\*
+        git config --global user.name 'Lateralus138'
+        git config --global user.email 'Lateralus138@users.noreply.github.com'
+        git commit --allow-empty -am "Pushed .\docs\json\* to master. - $(Get-Date ([datetime]::UtcNow)) UTC"
+        git push --force origin master
+    - uses: ncipollo/release-action@v1
+      if: steps.make_coninfo.conclusion == 'success'
+      with:
+        allowUpdates: True
+        tag: ${{ env.VS_FULL }}
+        name: ${{ env.RELEASE_TITLE }} - v${{ env.VS_FULL }}
+        bodyFile: ${{ env.RELEASE_FILE }}
+        prerelease: ${{ env.PRERELEASE }}
+        artifacts: build\windows\x86\${{ env.BIN_DEFAULT }}-x86.exe,build\windows\x64\${{ env.BIN_DEFAULT }}-x64.exe,scripts\setup\coninfo\x86_\Output\coninfo_x86_installer.exe,scripts\setup\coninfo\x64_\Output\coninfo_x64_installer.exe
+        token: ${{ secrets.GITHUB_TOKEN }}
