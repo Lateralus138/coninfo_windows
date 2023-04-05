@@ -10,6 +10,7 @@
   - [About](#about)
     - [Description](#description)
     - [Motivation](#motivation)
+  - [Support Me If You Like](#support-me-if-you-like)
   - [Usage](#usage)
     - [Environment](#environment)
     - [How](#how)
@@ -62,6 +63,18 @@
 &#x49;&#x20;&#x77;&#x72;&#x6f;&#x74;&#x65;&#x20;&#x74;&#x68;&#x69;&#x73;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x75;&#x73;&#x65;&#x20;&#x69;&#x6e;&#x20;&#x74;&#x68;&#x65;&#x20;&#x63;&#x6f;&#x6d;&#x6d;&#x61;&#x6e;&#x64;&#x20;&#x6c;&#x69;&#x6e;&#x65;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x65;&#x73;&#x70;&#x65;&#x63;&#x69;&#x61;&#x6c;&#x6c;&#x79;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x75;&#x73;&#x65;&#x20;&#x69;&#x6e;&#x20;*AutoHotkey*<sup>[[2](#note-2)]</sup>&#x20;&#x74;&#x6f;&#x20;&#x68;&#x65;&#x6c;&#x70;&#x20;&#x6d;&#x65;&#x20;&#x67;&#x65;&#x74;&#x20;&#x74;&#x68;&#x69;&#x73;&#x20;&#x73;&#x6f;&#x72;&#x74;&#x20;&#x6f;&#x66;&#x20;&#x69;&#x6e;&#x66;&#x6f;&#x72;&#x6d;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x73;&#x6f;&#x20;&#x49;&#x20;&#x63;&#x61;&#x6e;&#x20;&#x6d;&#x61;&#x6e;&#x69;&#x70;&#x75;&#x6c;&#x61;&#x74;&#x65;&#x2f;&#x63;&#x6f;&#x6e;&#x74;&#x72;&#x6f;&#x6c;&#x20;&#x6d;&#x79;&#x20;&#x63;&#x6f;&#x6e;&#x73;&#x6f;&#x6c;&#x65;&#x27;&#x73;&#x20;&#x62;&#x65;&#x74;&#x74;&#x65;&#x72;&#x2e;
 
 &#x59;&#x65;&#x73;&#x2c;&#x20;&#x49;&#x20;&#x6b;&#x6e;&#x6f;&#x77;&#x20;&#x74;&#x68;&#x65;&#x72;&#x65;&#x20;&#x61;&#x72;&#x65;&#x20;&#x6f;&#x74;&#x68;&#x65;&#x72;&#x20;&#x77;&#x61;&#x79;&#x73;&#x20;&#x74;&#x6f;&#x20;&#x67;&#x65;&#x74;&#x20;&#x74;&#x68;&#x69;&#x73;&#x20;&#x69;&#x6e;&#x66;&#x6f;&#x72;&#x6d;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2c;&#x20;&#x62;&#x75;&#x74;&#x20;&#x49;&#x20;&#x6c;&#x69;&#x6b;&#x65;&#x20;&#x74;&#x6f;&#x20;&#x63;&#x72;&#x65;&#x61;&#x74;&#x65;&#x20;&#x6d;&#x79;&#x20;&#x6f;&#x77;&#x6e;&#x20;&#x74;&#x6f;&#x6f;&#x6c;&#x73;&#x20;&#x6a;&#x75;&#x73;&#x74;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x74;&#x68;&#x65;&#x20;&#x73;&#x61;&#x6b;&#x65;&#x20;&#x6f;&#x66;&#x20;&#x69;&#x74;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x62;&#x65;&#x63;&#x61;&#x75;&#x73;&#x65;&#x20;&#x49;&#x20;&#x6b;&#x6e;&#x6f;&#x77;&#x20;&#x65;&#x78;&#x61;&#x63;&#x74;&#x6c;&#x79;&#x20;&#x77;&#x68;&#x61;&#x74;&#x20;&#x6d;&#x79;&#x20;&#x70;&#x72;&#x6f;&#x67;&#x72;&#x61;&#x6d;&#x20;&#x69;&#x73;&#x20;&#x64;&#x6f;&#x69;&#x6e;&#x67;&#x2e;
+
+---
+
+## Support Me If You Like
+
+If you like any of the projects below and care to donate to my ***PayPal***:
+
+[![PayPal Donation](docs/media/misc/paypal_donate_button.png)](https://paypal.me/ianapride?locale.x=en_US)
+
+Or ***Buy Me A Coffee*** if your prefer:
+
+[![Buy Me A Coffee](./docs/media/misc/buymeacoffe_a.png)](https://www.buymeacoffee.com/ianalanpride)
 
 ---
 
